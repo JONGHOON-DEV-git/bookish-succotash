@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_std_two/newpage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,6 +30,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  TextEditingController _controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,6 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             TextField(
+              controller: _controller,
               decoration: InputDecoration(
                 hintText: '예제',
                 label: Text(
@@ -58,7 +62,13 @@ class _MyHomePageState extends State<MyHomePage> {
               height: 15,
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => NewPage(PageText: _controller.text),
+                  ),
+                );
+              },
               child: Text('버튼1'),
             ),
           ],
